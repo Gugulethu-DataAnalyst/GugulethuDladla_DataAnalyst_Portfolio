@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gugulethu Dladla | Data Analytics &amp; Software Development</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <a href="index.html" class="logo">GUGULETHU D.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn-outline-sm">Resume</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div class="hero-content">
+        <h1>Hi, I'm <span class="accent-text">Gugulethu.</span><br />I build data &amp; software solutions.</h1>
+        <p class="hero-subtitle">
+          Final-year BSc Information Technology student at Richfield Graduate Institute of Technology, specializing in data analytics, database management, and full-stack software development.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">View My Work</a>
+          <a href="#contact" class="btn-secondary">Get in Touch</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://github.com/Gugulethu-DataAnalyst" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="mailto:gugulethudladla824@gmail.com" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-frame">
+          <canvas id="waveCanvas"></canvas>
+          <img
+            src="profile.jpeg"
+            alt="Gugulethu Dladla"
+            class="profile-portrait"
+          />
+          <div class="visual-overlay">
+            <div class="status-badge">
+              <span class="pulse-dot"></span> Open to Graduate &amp; Analyst Roles
+            </div>
+            <div class="code-snippet">
+              <span>SELECT</span> impact, insights<br />
+              <span>FROM</span> data_and_code<br />
+              <span>WHERE</span> execution = <span>'reliable'</span>;
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+        <div class="filter-tabs" id="filterTabs">
+          <button class="filter-btn active" data-filter="all">All (5)</button>
+          <button class="filter-btn" data-filter="active">Currently Working On</button>
+          <button class="filter-btn" data-filter="self-dev">Self-Development</button>
+          <button class="filter-btn" data-filter="school">Academic Projects</button>
+        </div>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+        <!-- 1. Currently Working On: LendingClub Credit Risk Analytics Engine -->
+        <article class="project-card" data-category="active">
+          <div class="card-top">
+            <span class="tag-badge badge-active">Currently Working On</span>
+            <a href="https://github.com/Gugulethu-DataAnalyst/LendingClub_credit-risk-analytics-engine" target="_blank" rel="noopener" aria-label="GitHub Repo">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <span class="tech-line">Python • Pandas • Scikit-Learn • OptBinning</span>
+          <h3>LendingClub Credit Risk Analytics Engine</h3>
+          <p>End-to-end credit risk analytics pipeline analyzing 2.26M+ loan records with feature engineering, WoE binning, and default probability modeling.</p>
+          <a href="projects/lendingclub-credit-risk.html" class="card-link">
+            Explore Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 2. Self-Development: German Credit Risk Analysis -->
+        <article class="project-card" data-category="self-dev">
+          <div class="card-top">
+            <span class="tag-badge badge-self">Self-Development • 2026</span>
+            <a href="https://github.com/Gugulethu-DataAnalyst/German_credit_Check-Analysis" target="_blank" rel="noopener" aria-label="GitHub Repo">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <span class="tech-line">Python • Machine Learning • EDA • Power BI</span>
+          <h3>German Credit Risk Analysis</h3>
+          <p>Predictive classification framework evaluating borrower risk drivers across an 11.7% baseline default portfolio with class-imbalance tuning.</p>
+          <a href="projects/german-credit-risk.html" class="card-link">
+            Explore Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 3. Self-Development: Discovery Vitality & Health Analysis -->
+        <article class="project-card" data-category="self-dev">
+          <div class="card-top">
+            <span class="tag-badge badge-self">Self-Development • 2025</span>
+            <a href="https://github.com/Gugulethu-DataAnalyst/discovery-health-analysis" target="_blank" rel="noopener" aria-label="GitHub Repo">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <span class="tech-line">Python • MySQL • Power BI • Excel</span>
+          <h3>Discovery Vitality &amp; Health Analysis</h3>
+          <p>Four-phase healthcare analytics pipeline merging member, claims, and wellness datasets into five interactive stakeholder Power BI dashboards.</p>
+          <a href="projects/discovery.html" class="card-link">
+            Explore Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 4. School Project: HealthFirst Pharmacy Inventory Management System -->
+        <article class="project-card" data-category="school">
+          <div class="card-top">
+            <span class="tag-badge badge-school">Academic Project</span>
+            <a href="https://github.com/Gugulethu-DataAnalyst/pharmaceuaticalDatabseSystem" target="_blank" rel="noopener" aria-label="GitHub Repo">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <span class="tech-line">Java (JDK 17) • Java Swing • MySQL • JDBC</span>
+          <h3>HealthFirst Pharmacy Inventory System</h3>
+          <p>Role-based desktop application built with DAO architecture for pharmacy inventory control, reorder alerts, supplier tracking, and POS billing.</p>
+          <a href="projects/pharmaceutical-pims.html" class="card-link">
+            Explore Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <!-- 5. School Project: Smart Pantry Manager -->
+        <article class="project-card" data-category="school">
+          <div class="card-top">
+            <span class="tag-badge badge-school">Academic Project</span>
+            <a href="https://github.com/Gugulethu-DataAnalyst/SmartPantryManager" target="_blank" rel="noopener" aria-label="GitHub Repo">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <span class="tech-line">Android SDK • Java • SQLite • RecyclerView</span>
+          <h3>Smart Pantry Manager</h3>
+          <p>Offline-first native Android application with SQLite pantry tracking and a deterministic boolean recipe-matching engine to eliminate food waste.</p>
+          <a href="projects/smart-pantry-manager.html" class="card-link">
+            Explore Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+      <div class="section-header">
+        <h2>Technical Stack</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h4><i class="fas fa-chart-line"></i> Data &amp; Analytics</h4>
+          <p>Python (Pandas, NumPy, Scikit-Learn), SQL, Power BI, Jupyter Notebooks, Feature Engineering &amp; Predictive Modeling</p>
+        </div>
+        <div class="skill-box">
+          <h4><i class="fas fa-code"></i> Software Development</h4>
+          <p>Java (OpenJDK 17), Java Swing, JDBC / DAO Pattern, Spring Boot, Native Android SDK (Java)</p>
+        </div>
+        <div class="skill-box">
+          <h4><i class="fas fa-database"></i> Databases &amp; Web</h4>
+          <p>MySQL Server 8.0, SQLite, HTML5, CSS3, JavaScript, Git &amp; GitHub</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+      <div class="contact-card">
+        <h2>Let's Connect</h2>
+        <p>Available for graduate roles and internships in Data Analytics, Business Analysis, and Software Development.</p>
+        <div class="contact-actions">
+          <a href="mailto:gugulethudladla824@gmail.com" class="btn-primary">
+            <i class="fas fa-paper-plane"></i> gugulethudladla824@gmail.com
+          </a>
+          <button class="btn-secondary" id="copyEmailBtn">
+            <i class="fas fa-copy"></i> Copy Email
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Gugulethu Dladla</span>
+    <a href="https://github.com/Gugulethu-DataAnalyst" target="_blank" rel="noopener" class="gh-badge">
+      Hosted on GitHub Pages <i class="fab fa-github"></i>
+    </a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
