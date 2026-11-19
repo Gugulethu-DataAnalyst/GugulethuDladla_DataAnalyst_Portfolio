@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Pantry Manager (Android) | Gugulethu Dladla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <header class="navbar">
+    <a href="../index.html" class="logo">GUGULETHU D.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="case-header">
+      <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Projects</a>
+      <div class="case-meta">
+        <span class="tag-badge badge-school">Academic Project • Native Android (Java)</span>
+      </div>
+      <h1>Smart Pantry Manager</h1>
+      <p class="case-lead">
+        An offline-first native Android application built in Java (API Level 24+) using Model-View-Adapter (MVA) architecture and SQLite persistence. Tracks household grocery inventory in real time and applies a deterministic boolean subset-matching algorithm ($R \subseteq P$) to recommend meals cookable immediately with zero missing ingredients.
+      </p>
+      <div class="case-actions">
+        <a href="https://github.com/Gugulethu-DataAnalyst/SmartPantryManager" target="_blank" rel="noopener" class="btn-primary">
+          <i class="fab fa-github"></i> View GitHub Repository
+        </a>
+      </div>
+    </section>
+
+    <section class="case-grid-2">
+      <div class="detail-card">
+        <h2><i class="fas fa-bullseye"></i> Application Goals</h2>
+        <ul class="detail-list">
+          <li>Eliminate household food waste and mealtime guesswork with offline-first SQLite pantry tracking.</li>
+          <li>Provide full CRUD inventory management with strict input validation and ISO expiration date tracking (<code>YYYY-MM-DD</code>).</li>
+          <li>Pre-seed a relational SQLite recipe database upon first launch via <code>SQLiteOpenHelper</code>.</li>
+          <li>Enforce a zero-tolerance boolean gatekeeper (<code>RecipeMatcher</code>) that surfaces recipes only when 100% of required ingredients are in stock.</li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <h2><i class="fas fa-trophy"></i> Key Outcomes &amp; Architecture</h2>
+        <ul class="detail-list">
+          <li>Built custom <code>RecyclerView</code> adapters that refresh pantry items and eligible recipes automatically during Android <code>onResume()</code> lifecycle events.</li>
+          <li>Implemented deterministic set-inclusion matching (R &sube; P) across 15 pre-seeded structured recipes with step-by-step preparation instructions.</li>
+          <li>Validated empty-string and floating-point quantity constraints prior to SQLite write transactions to guarantee data integrity.</li>
+        </ul>
+        <h2 style="margin-top: 1.5rem;"><i class="fas fa-tools"></i> Skills &amp; Stack</h2>
+        <div class="skills-pills">
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">Android SDK (API 24+)</span>
+          <span class="skill-pill">SQLite &amp; SQLiteOpenHelper</span>
+          <span class="skill-pill">RecyclerView &amp; Custom Adapters</span>
+          <span class="skill-pill">MVA Architecture</span>
+          <span class="skill-pill">XML Layouts</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-block">
+      <h2><i class="fas fa-code"></i> Code Showcase: Strict Boolean RecipeMatcher Engine (R &sube; P)</h2>
+      <p>Deterministic Java matching logic verifying that every required recipe ingredient exists in the user's active SQLite pantry set.</p>
+      <div class="code-window">
+        <div class="code-window-header">
+          <span>RecipeMatcher.java</span>
+          <button class="copy-code-btn">Copy Code</button>
+        </div>
+        <pre>public class RecipeMatcher {
+    /**
+     * Evaluates active pantry stock (P) against recipe requirements (R).
+     * Returns only recipes where R is a strict subset of P (100% match).
+     */
+    public static List&lt;Recipe&gt; getCookableRecipes(
+            List&lt;Recipe&gt; allRecipes, Set&lt;String&gt; availablePantryItems) {
+        
+        List&lt;Recipe&gt; matchedRecipes = new ArrayList&lt;&gt;();
+        Set&lt;String&gt; normalizedPantry = new HashSet&lt;&gt;();
+        for (String item : availablePantryItems) {
+            normalizedPantry.add(item.trim().toLowerCase());
+        }
+
+        for (Recipe recipe : allRecipes) {
+            boolean canCook = true;
+            for (String required : recipe.getRequiredIngredients()) {
+                if (!normalizedPantry.contains(required.trim().toLowerCase())) {
+                    canCook = false; // Zero-tolerance rule: missing even 1 item excludes recipe
+                    break;
+                }
+            }
+            if (canCook) {
+                matchedRecipes.add(recipe);
+            }
+        }
+        return matchedRecipes;
+    }
+}</pre>
+      </div>
+    </section>
+
+    <!--I will update this in the next sprint
+    <section class="case-block">
+      <h2><i class="fas fa-mobile-alt"></i> App Interface &amp; Recipe Matcher Screenshots</h2>
+      <p>Pantry inventory list, expiration date tracking, and matched recipe instructions on Android.</p>
+      <div class="visual-showcase">
+        <img src="../assets/images/smartpantry-screenshot.png" alt="Smart Pantry Manager Android App Screenshot" />
+        <p class="visual-caption">Save your Android emulator or device screenshot as <code>assets/images/smartpantry-screenshot.png</code> to display it here.</p>
+      </div>
+    </section>
+
+-->
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Gugulethu Dladla</span>
+    <a href="https://github.com/Gugulethu-DataAnalyst" target="_blank" rel="noopener" class="gh-badge">
+      Hosted on GitHub Pages <i class="fab fa-github"></i>
+    </a>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

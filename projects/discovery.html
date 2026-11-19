@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discovery Vitality &amp; Health Analysis | Gugulethu Dladla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <header class="navbar">
+    <a href="../index.html" class="logo">GUGULETHU D.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="case-header">
+      <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Projects</a>
+      <div class="case-meta">
+        <span class="tag-badge badge-self">Self-Development Project • 2025</span>
+      </div>
+      <h1>Discovery Vitality &amp; Health Claims Analysis</h1>
+      <p class="case-lead">
+        End-to-end healthcare and wellness analytics study examining simulated Discovery Vitality member demographics, physical activity engagement (steps, gym visits, Vitality points), health risk factors (BMI, smoking status, chronic conditions), and medical insurance claims to uncover cost-driving patterns and optimize member engagement.
+      </p>
+      <div class="case-actions">
+        <a href="https://github.com/Gugulethu-DataAnalyst/discovery-health-analysis" target="_blank" rel="noopener" class="btn-primary">
+          <i class="fab fa-github"></i> View GitHub Repository
+        </a>
+      </div>
+    </section>
+
+    <section class="case-grid-2">
+      <div class="detail-card">
+        <h2><i class="fas fa-bullseye"></i> Business Goals &amp; Objectives</h2>
+        <ul class="detail-list">
+          <li><strong>Phase 1 — Data Cleaning &amp; Preparation:</strong> Merge and standardize Member, Claims, and Vitality datasets in Python (Pandas/NumPy), resolving survey null values and incorrect datatypes.</li>
+          <li><strong>Phase 2 — Exploratory SQL Analysis:</strong> Extract and aggregate engagement levels, regional distribution, and claims behavior in MySQL.</li>
+          <li><strong>Phase 3 — Dashboard Visualization:</strong> Build interactive stakeholder-facing Power BI dashboards covering demographics, claims efficiency, and physical activity.</li>
+          <li><strong>Phase 4 — Insight Generation:</strong> Segment members by health risk profile to recommend targeted wellness incentives and reduce healthcare claim costs.</li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <h2><i class="fas fa-trophy"></i> Project Outcomes</h2>
+        <ul class="detail-list">
+          <li>Delivered <strong>5 interactive Power BI dashboards</strong>: Executive Overview, Member Demographics, Claims Analysis, Financial &amp; Claims Efficiency, and Engagement &amp; Activity.</li>
+          <li>Quantified correlations between active Vitality participation (steps, gym visits, check-ups) and lower high-cost chronic claim frequency.</li>
+          <li>Created regional and demographic segmentation to support personalized reward structures and proactive risk management.</li>
+        </ul>
+        <h2 style="margin-top: 1.5rem;"><i class="fas fa-tools"></i> Skills &amp; Stack</h2>
+        <div class="skills-pills">
+          <span class="skill-pill">Python (Pandas &amp; NumPy)</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">Power BI</span>
+          <span class="skill-pill">DAX &amp; Data Modeling</span>
+          <span class="skill-pill">Excel</span>
+          <span class="skill-pill">Healthcare Analytics</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-block">
+      <h2><i class="fas fa-database"></i> SQL Showcase: Member Engagement vs. Claims Efficiency</h2>
+      <p>MySQL analytical query joining member demographics, Vitality activity records, and medical claims to evaluate payout efficiency across risk tiers.</p>
+      <div class="code-window">
+        <div class="code-window-header">
+          <span>discovery_engagement_claims.sql</span>
+          <button class="copy-code-btn">Copy Query</button>
+        </div>
+        <pre>SELECT 
+    m.region,
+    m.plan_type,
+    CASE 
+        WHEN v.vitality_points >= 30000 THEN 'High Engagement'
+        WHEN v.vitality_points >= 15000 THEN 'Moderate Engagement'
+        ELSE 'Low Engagement'
+    END AS engagement_tier,
+    COUNT(DISTINCT m.member_id) AS total_members,
+    ROUND(AVG(v.monthly_gym_visits), 1) AS avg_gym_visits,
+    ROUND(SUM(c.claim_amount), 2) AS total_claimed,
+    ROUND(SUM(c.payout_amount) / NULLIF(SUM(c.claim_amount), 0) * 100, 2) AS payout_efficiency_pct
+FROM members m
+LEFT JOIN vitality_activity v ON m.member_id = v.member_id
+LEFT JOIN medical_claims c ON m.member_id = c.member_id
+GROUP BY m.region, m.plan_type, engagement_tier
+ORDER BY m.region, total_claimed DESC;</pre>
+      </div>
+    </section>
+
+    <!--I will update this in the next sprint
+
+    <section class="case-block">
+      <h2><i class="fas fa-chart-pie"></i> Power BI Executive &amp; Claims Dashboards</h2>
+      <p>Interactive Power BI reporting suite visualizing member demographics, payout efficiency, and Vitality engagement trends.</p>
+      <div class="visual-showcase">
+        <img src="../assets/images/discovery-dashboard.png" alt="Discovery Vitality Power BI Dashboard" />
+        <p class="visual-caption">Save your Power BI dashboard screenshot as <code>assets/images/discovery-dashboard.png</code> to display it here.</p>
+      </div>
+    </section>
+    -->
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Gugulethu Dladla</span>
+    <a href="https://github.com/Gugulethu-DataAnalyst" target="_blank" rel="noopener" class="gh-badge">
+      Hosted on GitHub Pages <i class="fab fa-github"></i>
+    </a>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

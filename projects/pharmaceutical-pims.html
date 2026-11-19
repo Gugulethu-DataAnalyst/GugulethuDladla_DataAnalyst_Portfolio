@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthFirst Pharmacy Inventory System | Gugulethu Dladla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <header class="navbar">
+    <a href="../index.html" class="logo">GUGULETHU D.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="case-header">
+      <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Projects</a>
+      <div class="case-meta">
+        <span class="tag-badge badge-school">Academic Project • Java Desktop &amp; MySQL</span>
+      </div>
+      <h1>HealthFirst Pharmacy Inventory Management System (PIMS)</h1>
+      <p class="case-lead">
+        A role-based Java desktop application engineered with Java Swing, MySQL, JDBC, and the Data Access Object (DAO) design pattern. Streamlines pharmaceutical inventory tracking, supplier management, expiration monitoring, and Point-of-Sale (POS) checkout workflows across Administrator and Cashier roles.
+      </p>
+      <div class="case-actions">
+        <a href="https://github.com/Gugulethu-DataAnalyst/pharmaceuaticalDatabseSystem" target="_blank" rel="noopener" class="btn-primary">
+          <i class="fab fa-github"></i> View GitHub Repository
+        </a>
+      </div>
+    </section>
+
+    <section class="case-grid-2">
+      <div class="detail-card">
+        <h2><i class="fas fa-bullseye"></i> System Goals &amp; Architecture</h2>
+        <ul class="detail-list">
+          <li><strong>Role-Based Security:</strong> Separate authenticated dashboards and permissions for Pharmacy Administrators and Cashiers.</li>
+          <li><strong>Administrator Controls:</strong> Full CRUD operations for medicines, reorder thresholds, expiry dates, supplier records, user accounts, and management reports.</li>
+          <li><strong>Cashier POS &amp; Stock Check:</strong> Real-time medicine search, stock availability checks, shopping cart checkout, and billing history inspection.</li>
+          <li><strong>Clean DAO Separation:</strong> Decouple Swing UI components from MySQL persistence via dedicated JDBC DAO classes.</li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <h2><i class="fas fa-trophy"></i> Technical Outcomes</h2>
+        <ul class="detail-list">
+          <li>Implemented atomic checkout transactions that record sales headers, line items, cashier IDs, and automatically decrement medicine stock quantities in MySQL.</li>
+          <li>Built real-time inventory verification preventing overselling and flagging low-stock / near-expiry medicines via reorder thresholds.</li>
+          <li>Delivered normalized relational MySQL schema scripts with pre-seeded users, suppliers, and pharmaceutical stock.</li>
+        </ul>
+        <h2 style="margin-top: 1.5rem;"><i class="fas fa-tools"></i> Skills &amp; Stack</h2>
+        <div class="skills-pills">
+          <span class="skill-pill">Java (JDK 17)</span>
+          <span class="skill-pill">Java Swing</span>
+          <span class="skill-pill">MySQL Server</span>
+          <span class="skill-pill">JDBC</span>
+          <span class="skill-pill">DAO Design Pattern</span>
+          <span class="skill-pill">Relational Schema Design</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-block">
+      <h2><i class="fas fa-code"></i> Code Showcase: JDBC Connection &amp; Atomic POS Stock Deduction</h2>
+      <p>Database connection configuration and transactional SQL logic updating inventory upon cashier checkout.</p>
+      <div class="code-window">
+        <div class="code-window-header">
+          <span>DatabaseConnection.java &amp; Checkout Transaction SQL</span>
+          <button class="copy-code-btn">Copy Code</button>
+        </div>
+        <pre>// DatabaseConnection.java
+public class DatabaseConnection {
+    private static final String URL = "jdbc:mysql://localhost:3306/healthfirst_pims";
+    private static final String USER = "root";
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+}
+
+-- Atomic POS Sale &amp; Stock Update Query
+INSERT INTO sales (cashier_id, sale_date, total_amount) VALUES (?, NOW(), ?);
+INSERT INTO sale_items (sale_id, medicine_id, quantity, unit_price) VALUES (?, ?, ?, ?);
+UPDATE medicines SET stock_quantity = stock_quantity - ? WHERE medicine_id = ? AND stock_quantity &gt;= ?;</pre>
+      </div>
+    </section>
+
+    <!--I will update this in the next sprint
+    <section class="case-block">
+      <h2><i class="fas fa-desktop"></i> Application Interface &amp; Reporting Views</h2>
+      <p>Administrator inventory dashboard, POS checkout screen, and MySQL relational schema views.</p>
+      <div class="visual-showcase">
+        <img src="../assets/images/pims-screenshot.png" alt="HealthFirst Pharmacy Inventory System Screenshot" />
+        <p class="visual-caption">Save your Java Swing UI or database diagram screenshot as <code>assets/images/pims-screenshot.png</code> to display it here.</p>
+      </div>
+    </section>
+-->
+    
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Gugulethu Dladla</span>
+    <a href="https://github.com/Gugulethu-DataAnalyst" target="_blank" rel="noopener" class="gh-badge">
+      Hosted on GitHub Pages <i class="fab fa-github"></i>
+    </a>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

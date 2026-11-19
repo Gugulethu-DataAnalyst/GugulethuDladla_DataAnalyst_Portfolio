@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LendingClub Credit Risk Analytics Engine | Gugulethu Dladla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <header class="navbar">
+    <a href="../index.html" class="logo">GUGULETHU D.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="case-header">
+      <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Projects</a>
+      <div class="case-meta">
+        <span class="tag-badge badge-active">Currently Working On • February 2026</span>
+      </div>
+      <h1>LendingClub Credit Risk Analytics Engine</h1>
+      <p class="case-lead">
+        An end-to-end credit risk analytics and predictive modeling pipeline built on the Kaggle LendingClub loan dataset (2.26 million+ records across 161 attributes). The project covers large-scale data cleaning, exploratory analysis, feature engineering, Weight of Evidence (WoE) binning, and default probability modeling to support data-driven lending decisions.
+      </p>
+      <div class="case-actions">
+        <a href="https://github.com/Gugulethu-DataAnalyst/LendingClub_credit-risk-analytics-engine" target="_blank" rel="noopener" class="btn-primary">
+          <i class="fab fa-github"></i> View GitHub Repository
+        </a>
+      </div>
+    </section>
+
+    <section class="case-grid-2">
+      <div class="detail-card">
+        <h2><i class="fas fa-bullseye"></i> Project Goals</h2>
+        <ul class="detail-list">
+          <li>Clean and streamline 2.26M+ historical loan records and 161 raw features into an analytics-ready schema.</li>
+          <li>Define clear binary target classes separating resolved good loans (Fully Paid) from bad loans (Charged-Off / Default).</li>
+          <li>Engineer borrower stability, debt-to-income, and revolving credit utilization indicators to isolate default drivers.</li>
+          <li>Train and evaluate interpretable credit risk classification models to guide loan underwriting thresholds.</li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <h2><i class="fas fa-trophy"></i> Key Outcomes &amp; Progress</h2>
+        <ul class="detail-list">
+          <li>Processed and standardized 1,348,099 resolved loan records, establishing a baseline portfolio default rate of 19.98%.</li>
+          <li>Resolved missingness and type inconsistencies across key financial predictors (<code>dti</code>, <code>revol_util</code>, <code>delinq_2yrs</code>, <code>pub_rec</code>, <code>emp_length</code>).</li>
+          <li>Implemented reproducible JupyterLab workflows and Git version control for modular feature engineering and model scoring.</li>
+        </ul>
+        <h2 style="margin-top: 1.5rem;"><i class="fas fa-tools"></i> Skills &amp; Stack</h2>
+        <div class="skills-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Pandas &amp; NumPy</span>
+          <span class="skill-pill">Scikit-Learn</span>
+          <span class="skill-pill">OptBinning</span>
+          <span class="skill-pill">JupyterLab</span>
+          <span class="skill-pill">Matplotlib &amp; Seaborn</span>
+          <span class="skill-pill">Git</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-block">
+      <h2><i class="fas fa-code"></i> Code Showcase: Target Engineering &amp; Portfolio Default Segmentation</h2>
+      <p>Python data-wrangling pipeline filtering resolved loan outcomes and computing baseline default risk segmentation.</p>
+      <div class="code-window">
+        <div class="code-window-header">
+          <span>credit_risk_preprocessing.py</span>
+          <button class="copy-code-btn">Copy Code</button>
+        </div>
+        <pre>import pandas as pd
+import numpy as np
+
+# Filter for resolved loan outcomes to define binary default target
+resolved_statuses = ['Fully Paid', 'Charged Off', 'Default']
+df_resolved = df[df['loan_status'].isin(resolved_statuses)].copy()
+
+# Binary target: 1 = Default / Charged-Off, 0 = Fully Paid
+df_resolved['default_flag'] = np.where(
+    df_resolved['loan_status'].isin(['Charged Off', 'Default']), 1, 0
+)
+
+# Impute missing numeric credit bureau attributes using median robustness
+for col in ['dti', 'revol_util', 'delinq_2yrs', 'pub_rec']:
+    df_resolved[col] = df_resolved[col].fillna(df_resolved[col].median())
+
+default_rate = df_resolved['default_flag'].mean() * 100
+print(f"Resolved Records: {len(df_resolved):,} | Portfolio Default Rate: {default_rate:.2f}%")</pre>
+      </div>
+    </section>
+
+    <!--I will update this in the next sprint 
+
+    <section class="case-block">
+      <h2><i class="fas fa-chart-bar"></i> Visual Analytics &amp; Dashboard Graphs</h2>
+      <p>Portfolio default distribution, loan grade risk curves, and Power BI / analytical visualizations.</p>
+      <div class="visual-showcase">
+        <img src="../assets/images/lendingclub-dashboard.png" alt="LendingClub Credit Risk Analytics Dashboard" />
+        <p class="visual-caption">Save your Power BI or analytical chart export as <code>assets/images/lendingclub-dashboard.png</code> to display it here.</p>
+      </div>
+    </section>
+    -->
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Gugulethu Dladla</span>
+    <a href="https://github.com/Gugulethu-DataAnalyst" target="_blank" rel="noopener" class="gh-badge">
+      Hosted on GitHub Pages <i class="fab fa-github"></i>
+    </a>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>

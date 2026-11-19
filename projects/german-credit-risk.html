@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>German Credit Risk Analysis | Gugulethu Dladla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <header class="navbar">
+    <a href="../index.html" class="logo">GUGULETHU D.</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="case-header">
+      <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to All Projects</a>
+      <div class="case-meta">
+        <span class="tag-badge badge-self">Self-Development Project • 2026</span>
+      </div>
+      <h1>German Credit Risk Analysis &amp; Default Prediction</h1>
+      <p class="case-lead">
+        A data-driven credit risk assessment framework built on the German Credit Dataset. Combines exploratory data analysis, multi-factor risk segmentation, and supervised machine learning classification to identify high-risk loan applicants and minimize financial default exposure.
+      </p>
+      <div class="case-actions">
+        <a href="https://github.com/Gugulethu-DataAnalyst/German_credit_Check-Analysis" target="_blank" rel="noopener" class="btn-primary">
+          <i class="fab fa-github"></i> View GitHub Repository
+        </a>
+      </div>
+    </section>
+
+    <section class="case-grid-2">
+      <div class="detail-card">
+        <h2><i class="fas fa-bullseye"></i> Business Problem &amp; Goals</h2>
+        <ul class="detail-list">
+          <li>Replace inconsistent rule-based credit screening with an objective, data-driven probability-of-default model.</li>
+          <li>Identify primary socioeconomic and financial drivers of creditworthiness (savings reserves, housing stability, credit history, and loan exposure).</li>
+          <li>Address class imbalance to maximize recall on potential defaulters while maintaining sustainable loan approval rates.</li>
+          <li>Evaluate classification models using Precision, Recall, F1-Score, and ROC-AUC aligned with real-world lending risk appetite.</li>
+        </ul>
+      </div>
+
+      <div class="detail-card">
+        <h2><i class="fas fa-trophy"></i> Key Findings &amp; Outcomes</h2>
+        <ul class="detail-list">
+          <li>Identified an overall portfolio default rate of approximately <strong>11.7%</strong>, heavily concentrated among borrowers with low savings, unstable housing, and high loan amounts.</li>
+          <li>Demonstrated compounding risk: borrowers experiencing multiple simultaneous adverse conditions exhibited substantially higher default probability than single-factor outliers.</li>
+          <li>Delivered a tuned classification model prioritizing high default capture (recall) to protect lenders against credit losses.</li>
+        </ul>
+        <h2 style="margin-top: 1.5rem;"><i class="fas fa-tools"></i> Skills &amp; Stack</h2>
+        <div class="skills-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Scikit-Learn</span>
+          <span class="skill-pill">Pandas &amp; NumPy</span>
+          <span class="skill-pill">Class Imbalance Tuning</span>
+          <span class="skill-pill">EDA &amp; Feature Engineering</span>
+          <span class="skill-pill">Power BI</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-block">
+      <h2><i class="fas fa-code"></i> Code Showcase: Compound Risk Feature Engineering &amp; Model Evaluation</h2>
+      <p>Feature interaction logic capturing compounding borrower vulnerability and evaluating precision-recall trade-offs.</p>
+      <div class="code-window">
+        <div class="code-window-header">
+          <span>german_credit_model.py</span>
+          <button class="copy-code-btn">Copy Code</button>
+        </div>
+        <pre>from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, recall_score, f1_score
+
+# Engineer compound vulnerability flag: low savings + non-owned housing + high credit amount
+df['compound_risk_flag'] = (
+    (df['Saving accounts'].isin(['little', 'unknown'])) &
+    (df['Housing'] != 'own') &
+    (df['Credit amount'] > df['Credit amount'].median())
+).astype(int)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, stratify=y, random_state=42
+)
+
+# Class-weighted classifier to prioritize capturing high-risk defaulters
+clf = RandomForestClassifier(n_estimators=200, class_weight='balanced', random_state=42)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+
+print(classification_report(y_test, y_pred))</pre>
+      </div>
+    </section>
+
+    <!--I will update this in the next sprint
+    
+    <section class="case-block">
+      <h2><i class="fas fa-chart-area"></i> Risk Segmentation &amp; Model Performance Visuals</h2>
+      <p>Default concentration across savings tiers, housing status, and credit exposure brackets.</p>
+      <div class="visual-showcase">
+        <img src="../assets/images/german-credit-dashboard.png" alt="German Credit Risk Analysis Visuals" />
+        <p class="visual-caption">Save your Power BI or model evaluation chart as <code>assets/images/german-credit-dashboard.png</code> to display it here.</p>
+      </div>
+    </section>
+
+    -->
+  </main>
+
+  <footer class="footer">
+    <span>&copy; 2026 Gugulethu Dladla</span>
+    <a href="https://github.com/Gugulethu-DataAnalyst" target="_blank" rel="noopener" class="gh-badge">
+      Hosted on GitHub Pages <i class="fab fa-github"></i>
+    </a>
+  </footer>
+  <script src="../script.js"></script>
+</body>
+</html>
